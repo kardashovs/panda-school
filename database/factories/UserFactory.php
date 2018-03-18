@@ -23,15 +23,6 @@ use Faker\Generator as Faker;
         ];
     });
 
-    $factory->defineAs(App\User::class, 'admin', function (Faker $faker) {
-        $faker = \Faker\Factory::create('ru_RU');
-        return [
-            'name' => $faker->name,
-            'email' => 'admin@admin.ru',
-            'password' => bcrypt('326598741'),
-            'remember_token' => str_random(10),
-        ];
-    });
     $factory->defineAs(App\User::class, 'user', function (Faker $faker) {
         $faker = \Faker\Factory::create('ru_RU');
         return [
@@ -42,16 +33,34 @@ use Faker\Generator as Faker;
         ];
     });
 
+    $factory->defineAs(App\User::class, 'admin', function (Faker $faker) {
+        $faker = \Faker\Factory::create('ru_RU');
+        return [
+            'name' => $faker->name,
+            'email' => 'admin@admin.ru',
+            'password' => bcrypt('326598741'),
+            'remember_token' => str_random(10),
+        ];
+    });
+
+
+    $factory->defineAs(App\Models\Role::class, 'user', function (Faker $faker) {
+        return [
+            'name' => 'user',
+            'title' => 'Пользователь',
+        ];
+    });
     $factory->defineAs(App\Models\Role::class, 'admin', function (Faker $faker) {
         return [
             'name' => 'admin',
             'title' => 'Администратор',
         ];
     });
-    $factory->defineAs(App\Models\Role::class, 'user', function (Faker $faker) {
+
+    $factory->defineAs(App\Models\Role::class, 'manager', function (Faker $faker) {
         return [
-            'name' => 'user',
-            'title' => 'Пользователь',
+            'name' => 'manager',
+            'title' => 'Менеджер',
         ];
     });
 

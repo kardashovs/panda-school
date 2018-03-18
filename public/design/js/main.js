@@ -65,17 +65,22 @@ $(document).ready(function(){
 	});
 	
 	$('.alphaber__char').on('click', function() {
-		var audio = new Audio($(this).attr('data-sound'));
+		let audio = new Audio($(this).attr('data-sound'));
 		audio.play();
 	});
 	
 	$('.lesson__media__play').on('click', function() {
-		var audio = new Audio($(this).attr('data-sound'));
+		let audio = new Audio($(this).attr('data-sound'));
 		audio.play();
+        audio.addEventListener('loadedmetadata', function() {
+
+            console.log(audio.duration);
+        });
+
 	});
 	
 	$('.lesson__media__replay').on('click', function() {
-		var audio = new Audio($(this).attr('data-sound'));
+		let audio = new Audio($(this).attr('data-sound'));
 		audio.play();
 	});
 	

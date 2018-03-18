@@ -25,7 +25,7 @@
 @endsection
 
 @section('button-lesson-check')
-    <a href="#check" class="control__next" onclick="event.preventDefault();checkLesson('{{ $lesson->name }}');">Далее</a>
+    <a href="#check" class="control__next" onclick="event.preventDefault();checkLesson('{{ $lesson->name }}');">{{ __('lesson.check') }}</a>
     <form id="{{ $lesson->name }}" action="{{ route('dashboard.lesson.check', [$lesson->section->level->name, $lesson->section->name, $lesson->name]) }}" method="POST" style="display: none;">
         @csrf
     </form>

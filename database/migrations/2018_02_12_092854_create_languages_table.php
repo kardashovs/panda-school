@@ -17,8 +17,8 @@ class CreateLanguagesTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('title');
-            $table->string('icon');
-            $table->string('icon2x');
+            $table->string('icon')->default('');
+            $table->string('icon2x')->default('');
             $table->timestamps();
         });
     }

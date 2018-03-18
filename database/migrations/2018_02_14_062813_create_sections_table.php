@@ -17,12 +17,19 @@ class CreateSectionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('title');
-            $table->integer('level_id');
+            $table->integer('level_id')->unsigned();
             $table->integer('sort')->unsigned()->nullable();
             $table->timestamps();
 
             $table->unique(['name', 'level_id']);
         });
+
+        Schema::table('sections', function (Blueprint $table) {
+            $table->foreign('level_id')
+                ->references('id')->on('levels')
+                ->onDelete('no action');
+        });
+
     }
 
     /**

@@ -18,13 +18,21 @@ class CreateLevelsTable extends Migration
             $table->string('name');
             $table->string('title');
             $table->string('description')->default('');
-            $table->integer('lang_id');
+            $table->string('image')->default('');
+            $table->integer('language_id')->unsigned();
             $table->integer('sort')->unsigned()->nullable();
             $table->boolean('paid')->default(false);
             $table->timestamps();
 
-            $table->unique(['name', 'lang_id']);
+            $table->unique(['name', 'language_id']);
 
+
+        });
+
+        Schema::table('levels', function (Blueprint $table) {
+            $table->foreign('language_id')
+                ->references('id')->on('languages')
+                ->onDelete('no action');
         });
 
     }

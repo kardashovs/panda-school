@@ -173,5 +173,7 @@
 <script src="{{ asset('design/js/lib.js') }}"></script>
 <script src="{{ asset('design/js/main.js') }}"></script>
 
+@yield('scripts')
+
 </body>
 </html>

@@ -53,8 +53,10 @@
         <div class="lesson--control-panel">
             @include('dashboard.include.skip-button')
 
-            @if(session('lesson-complited'))
+            @if(session('lesson-complited') )
+                @if(session('next'))
                 <a href="{{ session('next') }}" id="next-lesson" onclick="event.preventDefault();nextLesson('{{ session("next") }}')" class="control__next" >Далее</a>
+                @endif
             @else
                 @yield('button-lesson-check')
             @endif

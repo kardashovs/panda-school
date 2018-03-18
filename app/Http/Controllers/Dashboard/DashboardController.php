@@ -13,7 +13,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $levels = Level::where('lang_id', '=', Auth::user()->language->id)
+        $levels = Level::where('language_id', '=', Auth::user()->language->id)
                         ->orderBy('sort', 'asc')
                         ->get();
 //        dd($levels);

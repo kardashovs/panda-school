@@ -16,7 +16,7 @@ class LessonController extends Controller
 
         $level = Level::where([
             ['name', '=', $level_name],
-            ['lang_id', '=', $language]
+            ['language_id', '=', $language]
         ])->firstOrFail();
 
         $section = $level->sections()->where([
@@ -41,6 +41,9 @@ class LessonController extends Controller
             ->orderBy('sort', 'asc')
             ->first();
 
+        if($nextlesson) {
+            return $nextlesson;
+        }
 //        if(!$nextlesson) {
 //
 //            $level = $lesson->section->level;
@@ -57,7 +60,7 @@ class LessonController extends Controller
 //
 //        }
 
-        return $nextlesson;
+        return false;
     }
     // Следующий раздел
     private function nextSection($level, $section) {
@@ -68,6 +71,11 @@ class LessonController extends Controller
         ])->first();
 
         return $nextsection->id;
+    }
+
+    private function isAlphabet($template) {
+        if ($template === 'alphabet')
+            return true;
     }
 
     // Вывод урока
@@ -84,38 +92,46 @@ class LessonController extends Controller
 
     }
 
-    private function isAlphabet($template) {
-        if ($template === 'alphabet')
-            return true;
-    }
-
     // Выполнение урока
     public function checkLesson(Request $request, $level_name, $section_name, $lesson_name)
     {
         $lesson = $this->currentLesson($level_name, $section_name, $lesson_name);
-        $nextlesson = $this->nextLesson($lesson);
+        $nextlessonUrl = '';
+        if($nextlesson = $this->nextLesson($lesson))
+            $nextlessonUrl = route('dashboard.lesson', [$nextlesson->section->level->name, $nextlesson->section->name, $nextlesson->name]);
 
         $lesson->users()->detach(Auth::user()->id);
 
         if($this->isAlphabet($lesson->template->name))
         {
             $lesson->users()->attach(Auth::user()->id);
-            return back()->with(['lesson-complited' => 'true', 'next' => route('dashboard.lesson', [$nextlesson->section->level->name, $nextlesson->section->name, $nextlesson->name])]);
+            return back()->with(['lesson-complited' => 'true', 'next' => $nextlessonUrl]);
         }
 
-        foreach($lesson->meta->body->vars_true as $item) {
-            $vars_array[] = $item->value;
+        if(!is_array($lesson->meta->body->vars_true)) {
+            $array_value[] = $lesson->meta->body->vars_true;
+        } else {
+            $array_value = $lesson->meta->body->vars_true;
         }
+
+        foreach($array_value as $item) {
+            if(isset($item->value))
+                $vars_array[] = $item->value;
+            else
+                $vars_array[] = $item;
+        }
+
+
 
         if(count($request->result) === count($vars_array) && !array_diff_assoc( (array)$request->result, $vars_array)) {
 
             $lesson->users()->attach(Auth::user()->id);
-            return back()->with(['lesson-complited' => 'true', 'next' => route('dashboard.lesson', [$nextlesson->section->level->name, $nextlesson->section->name, $nextlesson->name])]);
+            return back()->with(['lesson-complited' => 'true', 'next' => $nextlessonUrl]);
         }
 
 //        return view($lesson->template->path, ['lesson' => $lesson, 'next_lesson' => $nextlesson]);
 
-        return back()->with(['lesson-complited' => 'false', 'next' => route('dashboard.lesson', [$nextlesson->section->level->name, $nextlesson->section->name, $nextlesson->name])]);
+        return back()->with(['lesson-complited' => 'false', 'next' => $nextlessonUrl]);
     }
 
 

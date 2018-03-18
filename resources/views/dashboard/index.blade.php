@@ -13,7 +13,7 @@
         @foreach($levels as $level)
         @if($level->sections->count() > 0)
         <div class="section">
-            <div class="section__image" style="background-image: url({{asset('design/images/section-1.png')}})"></div>
+            <div class="section__image" style="background-image: url({{$level->image}})"></div>
             <div class="section__content">
                 <div class="section__content__main">
                     <div class="section__main--left">

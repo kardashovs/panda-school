@@ -13,4 +13,5 @@ class Section extends Model
     public function level () {
         return $this->belongsTo('App\Models\Level');
     }
+
 }

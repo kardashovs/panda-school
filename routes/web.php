@@ -18,8 +18,14 @@ Route::group( ['middleware' => ['language'] ], function () {
 
 });
 
-Route::group( ['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin'] ], function () {
+Route::group( ['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:manager'] ], function () {
+    Route::get('{path}', 'AdminDashboardController@index')->where('path', '(.*)');
+    Route::get('/', 'AdminDashboardController@index')->name('admin.dashboard');
 
+//    Route::get('/levels', 'LevelsController@index')->name('admin.levels');
+//    Route::get('/levels/lang={language}', 'LevelsController@levels')->name('admin.levels.language');
+
+//    Route::get('/level/id={id}', 'LevelsController@show')->name('admin.level');
 });
 
 //Смена языка – мультиязычность

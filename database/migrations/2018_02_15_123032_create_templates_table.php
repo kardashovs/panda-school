@@ -18,6 +18,7 @@ class CreateTemplatesTable extends Migration
             $table->string('name')->unique();
             $table->string('title');
             $table->string('path')->unique();
+            $table->json('fields')->nullable();
             $table->timestamps();
         });
     }
