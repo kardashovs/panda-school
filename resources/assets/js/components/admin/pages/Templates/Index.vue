@@ -1,5 +1,9 @@
 <template>
-    <v-flex xs12>
+<v-container>
+    <v-layout>
+
+
+        <v-flex xs12>
         <v-card>
             <v-card-title>
                 <h2>Список типов заданий</h2>
@@ -31,6 +35,8 @@
             </v-card-text>
         </v-card>
     </v-flex>
+    </v-layout>
+</v-container>
 </template>
 
 <script>

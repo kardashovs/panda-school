@@ -1,6 +1,6 @@
 <template>
 
-
+    <v-container>
         <v-layout row wrap d-block>
                 <v-layout row style="margin-bottom: 20px">
                         <v-flex xs12>
@@ -87,7 +87,7 @@
                 </v-layout>
                 </transition>
         </v-layout>
-
+    </v-container>
 </template>
 
 <script>

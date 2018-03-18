@@ -11,11 +11,6 @@ class Lesson extends Model
         'meta' => 'object',
     ];
 
-
-    public function language() {
-        return $this->belongsTo('App\Models\Language');
-    }
-
     public function template () {
         return $this->belongsTo('App\Models\Template');
     }

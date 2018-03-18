@@ -32,3 +32,7 @@ Route::group( ['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['au
 Route::get('/lang/{language}', 'LanguageController@changeLangSite')->name('language');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

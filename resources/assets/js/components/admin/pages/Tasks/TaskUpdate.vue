@@ -4,7 +4,18 @@
 
 <script>
     export default {
-        name: "task-update"
+        data() {
+            return {
+                task: {
+                    name: ''
+                    title: ''
+                    template: null,
+                    meta: {
+                        body: null,
+                    }
+                }
+            }
+        }
     }
 </script>
 

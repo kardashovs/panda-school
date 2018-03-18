@@ -19,13 +19,22 @@ class CreateLessonsTable extends Migration
             $table->string('title');
             $table->string('template_id')->nullable();
             $table->json('meta');
-            $table->integer('section_id');
+            $table->integer('section_id')->unsigned();
             $table->integer('sort')->unsigned()->nullable();
             $table->timestamps();
 
             $table->unique(['name', 'section_id']);
 
+            $table->index('section_id');
+
         });
+
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->foreign('section_id')
+                ->references('id')->on('sections')
+                ->onDelete('no action');
+        });
+
     }
 
     /**

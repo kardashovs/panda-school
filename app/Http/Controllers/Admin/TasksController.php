@@ -15,7 +15,7 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
-        $lessons = Lesson::whereSectionId($request->id)->with('template')->get();
+        $lessons = Lesson::whereSectionId($request->id)->with('template')->with('section.level.language')->get();
 
         return ['tasks' => $lessons];
     }
