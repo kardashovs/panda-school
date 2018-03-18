@@ -7,11 +7,11 @@
         data() {
             return {
                 task: {
-                    name: ''
-                    title: ''
-                    template: null,
+                    name: '',
+                    title: '',
+                    template: '',
                     meta: {
-                        body: null,
+                        body: '',
                     }
                 }
             }

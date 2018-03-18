@@ -21,7 +21,8 @@ import TaskStore from '../pages/Tasks/TaskStore.vue';
 import Templates from '../pages/Templates/Index.vue';
 
 
-import NotFound from '../pages/404.vue';
+import NotFound from '../pages/errors/404.vue';
+import inDev from '../pages/errors/inDevelopment.vue';
 
 const prefix = '/admin'
 export default new Router({
@@ -59,6 +60,9 @@ export default new Router({
             component: TaskUpdate, name: 'task.edit'},
         {path: prefix+'/404', name: '404',
             component: NotFound,
+        },
+        {path: prefix+'/development', name: 'indev',
+            component: inDev,
         },
         { path: '*',
             redirect: prefix+'/404'
