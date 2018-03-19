@@ -8,15 +8,12 @@
         <div class="lesson__content">
             @if(session('lesson-complited') )
                 <div class="lesson__status">
-                    <div class="lesson__status__title">
-                        @if(session('lesson-complited') === 'true')
-                            Великолепно!
-                        @else
-                            Не правильно!
-                        @endif
-                    </div>
                     <div class="lesson__status__image">
+                    @if(session('lesson-complited') === 'true')
                         <img src="{{ asset('design/images/complete.png') }}" alt="">
+                    @else
+                        <img src="{{ asset('design/images/no-complete.png') }}" alt="">
+                    @endif
                     </div>
                     <div class="progress__status">
                         <div class="progress__level">

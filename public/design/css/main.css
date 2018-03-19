@@ -347,7 +347,10 @@ img {
 
 .section__content__dropdown {
   position: relative;
-  padding-top: 26px; }
+  padding-top: 26px;
+  max-height: 600;
+  overflow: auto;
+}
   .section__content__dropdown:before {
     content: '';
     position: absolute;
@@ -370,14 +373,13 @@ img {
 
 .section__content__main,
 .section__content__dropdown {
-  padding-left: 30px;
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex; }
 
-.section__content__main {
-  padding-top: 19px; }
+
   .section__content__main:hover {
     cursor: pointer; }
     .section__content__main:hover .section__title {
@@ -388,17 +390,17 @@ img {
   font-size: 14px;
   color: #e8eaff; }
 
-.section__main__title,
-.section__dropdown__title {
+.section__main__title {
   margin-bottom: 5px;
   max-height: 20px;
   overflow: hidden;
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis; }
 
-.section__main--left,
-.section__dropdown--left {
+.section__main--left{
   min-width: 380px;
+  padding-top: 19px;
+  padding-left: 30px;
   width: 380px; }
 
 .section__main__description {
@@ -440,9 +442,9 @@ img {
   color: #80BAFF;
   margin-left: 12px; }
 
-.section__main--right,
-.section__dropdown--right {
+.section__main--right {
   width: 100%;
+  padding-top: 19px;
   padding-right: 26px; }
 
 .section__progress-bar {
@@ -465,53 +467,7 @@ img {
   background: -webkit-gradient(linear, left top, left bottom, from(#adf66b), to(#00ffc8));
   background: -webkit-linear-gradient(top, #adf66b 0%, #00ffc8 100%);
   background: -o-linear-gradient(top, #adf66b 0%, #00ffc8 100%);
-  background: linear-gradient(180deg, #adf66b 0%, #00ffc8 100%); }
-
-.section__dropdown__title {
-  max-height: 35px; }
-  .section__dropdown__title .section__title {
-    display: inline-block;
-    font-size: 14px;
-    max-width: 120px;
-    line-height: 18px; }
-
-.level-section--bg {
-  background: url(/design/images/section-image.png) 50% 50%/cover no-repeat;
-  width: 30px;
-  height: 32px;
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  cursor: pointer; }
-
-.level-section__index {
-  background: url(/design/images/index-bg.png) 50% 50%/cover no-repeat;
-  height: 24px;
-  width: 24px;
-  font-family: "ProximaNova-Semibold";
-  font-size: 14px;
-  color: #f784b9;
-  text-align: center;
-  line-height: 24px; }
-
-.level-sections {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  margin-bottom: 19px;
-  height:38px;
+  background: linear-gradient(180deg, #adf66b 0%, #00ffc8 100%);
 }
 
 .arrow-down {
@@ -522,15 +478,6 @@ img {
 
 .sections {
   position: relative; }
-
-.level-section {
-  padding: 3px;
-  margin-right: 22px;
-  -webkit-border-radius: 50px;
-          border-radius: 50px;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease; }
 
 .level-section--select {
   background: #fff;
@@ -548,65 +495,6 @@ img {
       -ms-flex-align: center;
           align-items: center; }
 
-.level-section__lesson {
-  background: -webkit-gradient(linear, left top, left bottom, from(#EAFD9B), to(#49DFE0));
-  background: -webkit-linear-gradient(top, #EAFD9B 0%, #49DFE0 100%);
-  background: -o-linear-gradient(top, #EAFD9B 0%, #49DFE0 100%);
-  background: linear-gradient(180deg, #EAFD9B 0%, #49DFE0 100%);
-  border: 2px solid #D2D6FF;
-  width: 25px;
-  height: 25px;
-  -webkit-border-radius: 50px;
-          border-radius: 50px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-right: 10px;
-  text-decoration: none; }
-  .level-section__lesson:hover span {
-    color: #000; }
-  .level-section__lesson span {
-    font-family: "ProximaNova-Regular";
-    font-size: 12px;
-    color: #fff;
-    -webkit-transition: color .3s ease;
-    -o-transition: color .3s ease;
-    transition: color .3s ease; }
-
-.level-section__lessons {
-  margin-left: 20px;
-  display: none; }
-
-.level-section__lessons--show {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
-
-.level-section__text {
-  position: absolute;
-  left: -150px;
-  top: -25px;
-  width: 150px;
-  height: 80px;
-  padding-left: 10px;
-  background: url(/design/images/lessons-text.png) left top no-repeat;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  text-align: center;
-  padding-top: 38px;
-  color: #80BAFF;
-  font-family: "ProximaNova-Regular";
-  font-size: 12px; }
 
 .progress-bar {
   -webkit-border-radius: 5px;
@@ -981,8 +869,12 @@ img {
   padding-top: 75px;
 }
 
+.lesson__status__image {
+  margin-bottom: 30px;
+}
+
 .lesson__status__image img {
-  max-height: 255px; }
+  max-height: 270px; }
 
 .lesson__status__title {
   font-family: "ProximaNova-Bold";
