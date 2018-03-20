@@ -17,6 +17,7 @@ class CreateSectionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('title');
+            $table->string('hint')->default('');
             $table->integer('level_id')->unsigned();
             $table->integer('sort')->unsigned()->nullable();
             $table->timestamps();

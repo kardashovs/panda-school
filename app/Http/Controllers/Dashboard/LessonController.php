@@ -100,11 +100,15 @@ class LessonController extends Controller
         if($nextlesson = $this->nextLesson($lesson))
             $nextlessonUrl = route('dashboard.lesson', [$nextlesson->section->level->name, $nextlesson->section->name, $nextlesson->name]);
 
-        $lesson->users()->detach(Auth::user()->id);
+
+        if(!$lesson->users->where('id', Auth::user()->id)->first())
+            $lesson->users()->save(Auth::user(), ['complete' => false]);
+
+        $lesson->users()->updateExistingPivot(Auth::user()->id, ['complete' => false]);
 
         if($this->isAlphabet($lesson->template->name))
         {
-            $lesson->users()->attach(Auth::user()->id);
+            $lesson->users()->updateExistingPivot(Auth::user()->id, ['complete' => true]);
             return back()->with(['lesson-complited' => 'true', 'next' => $nextlessonUrl]);
         }
 
@@ -125,7 +129,7 @@ class LessonController extends Controller
 
         if(count($request->result) === count($vars_array) && !array_diff_assoc( (array)$request->result, $vars_array)) {
 
-            $lesson->users()->attach(Auth::user()->id);
+            $lesson->users()->updateExistingPivot(Auth::user()->id, ['complete' => true]);
             return back()->with(['lesson-complited' => 'true', 'next' => $nextlessonUrl]);
         }
 

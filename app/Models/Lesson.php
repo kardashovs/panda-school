@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 
 class Lesson extends Model
 {
@@ -21,5 +23,9 @@ class Lesson extends Model
 
     public function users () {
         return $this->belongsToMany('App\User');
+    }
+
+    public function checkUser() {
+        return $this->users->where('id', Auth::user()->id)->first();
     }
 }

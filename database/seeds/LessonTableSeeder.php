@@ -25,7 +25,7 @@ class LessonTableSeeder extends Seeder
                 'title' => 'Прослушай и выбери правильный',
                 'meta' => '{ "body": { "vars": [ { "title": "Cat", "value": "cat" }, { "title": "Cet", "value": "cet" }, { "title": "Cot", "value": "cot" }, { "title": "Cut", "value": "cut" } ], "vars_true": { "image": "assets/lessons/cat.jpg", "sound": "assets/sounds/cat.mp3", "title": "Cat", "value": "cat" } } }',
                 'template_id' => '2',
-                'section_id' => '1',
+                'section_id' => '3',
                 'sort' => '2',
             ],
             [
@@ -33,7 +33,7 @@ class LessonTableSeeder extends Seeder
                 'title' => 'Прослушай и выбери правильный',
                 'meta' => '{ "body": { "vars": [ { "title": "Table", "value": "table" }, { "title": "Tabl", "value": "tabl" }, { "title": "Teble", "value": "teble" }, { "title": "Apple", "value": "apple" } ], "vars_true": { "image": "", "sound": "assets/sounds/table.mp3", "title": "Table", "value": "table" } } }',
                 'template_id' => '2',
-                'section_id' => '1',
+                'section_id' => '2',
                 'sort' => '4',
             ],
             [

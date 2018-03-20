@@ -348,8 +348,8 @@ img {
 .section__content__dropdown {
   position: relative;
   padding-top: 26px;
-  max-height: 600;
-  overflow: auto;
+  max-height: 560px;
+  overflow-y: auto;
 }
   .section__content__dropdown:before {
     content: '';
@@ -362,17 +362,124 @@ img {
     background: -o-linear-gradient(331.26deg, #f784b9 17.95%, #1600ff 123.89%);
     background: linear-gradient(118.74deg, #f784b9 17.95%, #1600ff 123.89%); }
 
+  .section__dropdown__progress {
+    width: 100%;
+  }
+
+  .section__circle {
+    background: #e8eaff;
+    height: 108px;
+    width: 108px;
+    border-radius: 100%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .section__circle--small {
+    height: 65px;
+    width: 65px;
+    background: #fff;
+    border-radius: 100%;
+    position: absolute;
+    top: 21px;
+    left: 21px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #80baff;
+    font-family: "ProximaNova-Regular";
+    font-size: 24px;
+    z-index: 1;
+  }
+
+  .section__circle--bg {
+    transform: rotate(90deg);
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+  }
+
+  .section__circle--task {
+    width: 52px;
+    height: 52px;
+    margin: 0 10px;
+  }
+
+  .section__circle__task--small {
+    top: 8.5px;
+    left: 8.5px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .section__dropdown__tasks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .section__task__link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+  }
+
 .section__content {
   position: relative;
-  width: 100%; }
+  width: 100%;
+}
 
-.section__title {
-  font-family: "ProximaNova-Bold";
+.section__content__list {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.section__content__list:last-child {
+  border: 0;
+}
+
+.section__task__icon {
+  width: 50%;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #eee;
+}
+
+.section__title,
+.section__dropdown__title {
+  font-family: "ProximaNova-Regular";
   font-size: 18px;
   color: #80BAFF; }
 
-.section__content__main,
-.section__content__dropdown {
+.section__dropdown__title {
+  font-family: "ProximaNova-Bold";
+  font-size: 24px;
+  width: 100%;
+  text-align: center;
+}
+
+.section__content__main {
 
   display: -webkit-box;
   display: -webkit-flex;

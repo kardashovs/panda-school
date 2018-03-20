@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLessonUserTable extends Migration
+class CreateLevelUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,21 @@ class CreateLessonUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('lesson_user', function (Blueprint $table) {
+        Schema::create('level_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lesson_id')->unsigned();
-            $table->boolean('complete')->nullable();
-
             $table->integer('user_id')->unsigned();
+            $table->integer('level_id')->unsigned();
+            $table->integer('persent')->default(0);
+
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');
-            $table->foreign('lesson_id')
+                ->onDelete('restrict');
+
+            $table->foreign('level_id')
                 ->references('id')
-                ->on('lessons')
-                ->onDelete('cascade');
+                ->on('levels')
+                ->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -38,6 +39,6 @@ class CreateLessonUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lesson_user');
+        Schema::dropIfExists('level_user');
     }
 }

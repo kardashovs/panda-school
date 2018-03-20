@@ -16,19 +16,22 @@ class SectionTableSeeder extends Seeder
                 'name' => 'a',
                 'title' => '1 блок',
                 'level_id' => 1,
-                'sort' => '1'
+                'sort' => '1',
+                'hint' => ''
             ],
             [
                 'name' => 'b',
                 'title' => '2 блок',
                 'level_id' => 1,
-                'sort' => '2'
+                'sort' => '2',
+                'hint' => ''
             ],
             [
                 'name' => 'с',
                 'title' => '2 блок',
                 'level_id' => 1,
-                'sort' => '3'
+                'sort' => '3',
+                'hint' => ''
             ],
         ]);
     }

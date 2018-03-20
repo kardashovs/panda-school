@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App;
 use Auth;
 use App\Models\Level;
 
@@ -13,10 +12,13 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $levels = Level::where('language_id', '=', Auth::user()->language->id)
+        $levels = Level::where('language_id', Auth::user()->language->id)
+                        ->with(['sections', 'sections.lessons', 'sections.lessons.users' => function($query) {
+                            $query->where('user_id', Auth::user()->id)->withPivot('complete');
+                        }])
                         ->orderBy('sort', 'asc')
                         ->get();
-//        dd($levels);
+
         return view('dashboard.index', ['levels' => $levels]);
     }
 

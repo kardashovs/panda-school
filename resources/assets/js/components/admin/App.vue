@@ -13,6 +13,7 @@
                         <v-list-tile-title>Главная</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
+
                 <v-list-group>
                     <v-list-tile slot="activator" >
                         <v-list-tile-action>
@@ -66,8 +67,47 @@
                             </v-list-tile>
                         </v-list-group>
                     </v-list>
-
                 </v-list-group>
+                <v-list-tile @click="$router.push({ name: 'indev'})">
+                    <v-list-tile-action>
+                        <v-icon color="green darken-2">account_circle</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>Пользователи</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile @click="$router.push({ name: 'indev'})">
+                    <v-list-tile-action>
+                        <v-icon color="blue">monetization_on</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>Тарифы</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile @click="$router.push({ name: 'indev'})">
+                    <v-list-tile-action>
+                        <v-icon color="orange">credit_card</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>Платежы</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile @click="$router.push({ name: 'indev'})">
+                    <v-list-tile-action>
+                        <v-icon color="purple">settings_applications</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>Настройки сервиса</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile @click="$router.push({ name: '404'})">
+                    <v-list-tile-action>
+                        <v-icon color="red">error</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>Страница не найдена 404</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
             </v-list>
         </v-navigation-drawer>
         <v-toolbar color="blue" dark fixed app :clipped="$vuetify.breakpoint.lgAndUp">
@@ -88,7 +128,7 @@
                 </v-layout>
             </v-container>
         </v-content>
-        <v-footer color="indigo" app>
+        <v-footer color="blue darken-4" app>
             <span class="white--text">&copy; 2017</span>
         </v-footer>
 

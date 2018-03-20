@@ -11,7 +11,8 @@
     <!--Levels -->
     <div class="sections">
         @foreach($levels as $level)
-        @if($level->sections->count() > 0)
+        {{--@if($level->sections->count() > 0)--}}
+        @if(true)
         <div class="section">
 
             <div class="section__content">
@@ -29,6 +30,10 @@
 								<span class="locked">
 									<img src="{{ asset('design/images/lock.png') }}"
                                          srcset="{{ asset('design/images/lock@2x.png') }} 2x" alt="">
+								</span>
+                                @else
+                                <span class="locked">
+									<img src="{{ asset('design/images/free-level.png') }}" width="25" alt="">
 								</span>
                                 @endif
                             <span class="section__description">
@@ -52,36 +57,58 @@
                 @if(Auth::user()->paid && $level->paid || !$level->paid)
 
                     <div class="section__content__dropdown" style="display: none">
-                        <div class="section__dropdown--left">
-                            <div class="section__dropdown__title">
-                                    <span class="section__title">
-                                        Выбери урок <br>и начни обучение
-                                    </span>
+                    @foreach($level->sections as $key=>$section)
+                        @if($section->lessons->count() > 0)
+                        <div class="section__content__list">
+                            <div class="section__dropdown__title">{{$section->title}}</div>
+                            <div class="section__dropdown__progress">
+                                <div class="section__circle">
+                                    <div class="section__circle--small">
+                                        <span>10%</span>
+                                    </div>
+                                    <div class="section__circle--bg"
+                                         style="background: linear-gradient(270deg, #ADF66B 0%, #00FFC8 50%, #E8EAFF 0%);">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="section__dropdown--right">
-                            <div class="level-sections">
-                                @foreach($level->sections as $key=>$section)
-                                    @if($section->lessons->count() > 0)
-                                        <div class="level-section">
-                                            <div class="level-section--bg">
-                                                <div class="level-section__index">{{ $key+1 }}</div>
-                                            </div>
-                                            <div class="level-section__lessons">
-                                                <div class="level-section__text">
-                                                    Задания
-                                                </div>
-                                                @foreach($section->lessons as $key=>$lesson)
-                                                        <a href="{{ route('dashboard.lesson', [$lesson->section->level->name, $lesson->section->name, $lesson->name]) }}" class="level-section__lesson">
-                                                            <span>{{ $key+1 }}</span>
-                                                        </a>
-                                                @endforeach
-                                            </div>
-                                        </div>
+                            <div class="section__dropdown__tasks">
+                                @foreach($section->lessons as $key=>$lesson)
+
+                                <div class="section__circle section__circle--task">
+                                    <div class="section__circle--small section__circle__task--small">
+                                        @if($key === 0 || $lesson->users->first())
+                                            <img src="{{ $lesson->template->image }}"  class="section__task__icon" alt="">
+                                        @elseif($section->lessons[$key-1]->users->first() && $section->lessons[$key-1]->users->first()->pivot->complete)
+                                            <img src="{{ $lesson->template->image }}"  class="section__task__icon" alt="">
+                                        @else
+                                            <img src="{{ asset('/design/images/lock-icon.png') }}" height="20" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="section__circle--bg"
+
+                                         @if($lesson->users->first() && $lesson->users->first()->pivot->complete)
+                                            style="background: linear-gradient(270deg, #ADF66B 0%, #00FFC8 100%, #E8EAFF 0%);"
+                                         @elseif($lesson->users->first() && !$lesson->users->first()->pivot->complete)
+                                            style="background: linear-gradient(270deg, #ADF66B -30%, #FF3D00 100%, #E8EAFF 0%);"
+                                         @else
+
+                                         @endif
+                                    >
+
+                                    </div>
+                                    @if($key === 0 || $lesson->users->first())
+                                    <a href="{{ route('dashboard.lesson', [$lesson->section->level->name, $lesson->section->name, $lesson->name]) }}"
+                                        class="section__task__link"></a>
+                                    @elseif($section->lessons[$key-1]->users->first() && $section->lessons[$key-1]->users->first()->pivot->complete)
+                                    <a href="{{ route('dashboard.lesson', [$lesson->section->level->name, $lesson->section->name, $lesson->name]) }}"
+                                       class="section__task__link"></a>
                                     @endif
+                                </div>
                                 @endforeach
                             </div>
                         </div>
+                        @endif
+                    @endforeach
                     </div>
 
                 @endif
