@@ -18,6 +18,10 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             'layouts.dashboard', 'App\Http\ViewComposers\LanguageComposer'
         );
+
+        View::composer(
+            'dashboard.*', 'App\Http\ViewComposers\LevelComposer'
+        );
 //
 //        // Using Closure based composers...
 //        View::composer('dashboard', function ($view) {

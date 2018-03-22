@@ -39,6 +39,7 @@ class SectionsController extends Controller
         $section = new Section;
         $section->name = $request->name;
         $section->title = $request->title;
+        $section->hint = $request->hint;
         $section->level_id = $request->level_id;
         $section->sort = ($sections->last())? $sections->last()->sort +1 : 1;
         $section->save();
@@ -79,6 +80,7 @@ class SectionsController extends Controller
         $section = Section::find($id);
         $section->name = $request->name;
         $section->title = $request->title;
+        $section->hint = $request->hint;
         $section->level_id = $request->level_id;
         $section->sort = $request->sort;
         $section->save();

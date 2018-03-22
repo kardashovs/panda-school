@@ -6,11 +6,6 @@
             <h2 class="lesson__h2">Давайте выучим алфавит</h2>
             <span class="lesson__description">Let’s learn the alphabet</span>
         </div>
-        <div class="lesson__help">
-            <button class="lesson__help__button">
-                <img src="/design/images/help-icon.png" srcset="/design/images/help-icon@2x.png 2x" alt="">
-            </button>
-        </div>
     </div>
     <div class="lesson__alphabet">
         @foreach($lesson->meta->body->alphabet as $item)

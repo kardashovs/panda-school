@@ -47,6 +47,27 @@ class TemplateTableSeeder extends Seeder
                 'image' => '/design/images/fill-two-field-icon.png',
                 'fields' => '{"body": ""}'
             ],
+            [
+                'name' => 'drag-and-drop-asoc-image',
+                'title' => 'Посмотри и соотнеси изображения словами',
+                'path' => 'dashboard.lessons.drag-and-drop-asoc-image',
+                'image' => '/design/images/drag-and-drop-asoc-image.png',
+                'fields' => '{"body": {"vars": [{"image": "", "sound": "", "title": ""}], "vars_true": [""]}}'
+            ],
+            [
+                'name' => 'random-symbol',
+                'title' => 'Собири слово из букв',
+                'path' => 'dashboard.lessons.random-symbol',
+                'image' => '/design/images/random-symbol.png',
+                'fields' => '{"body": {"image": "", "sound": "", "vars_true": [""], "text_random": ""}}'
+            ],
+            [
+                'name' => 'listen-and-write',
+                'title' => 'Послушай и запиши правильный ответ',
+                'path' => 'dashboard.lessons.listen-and-write',
+                'image' => '/design/images/listen-and-write.png',
+                'fields' => '{"body": {"vars_true": {"image": "", "sound": "", "value": ""}}}'
+            ],
 
         ]);
     }

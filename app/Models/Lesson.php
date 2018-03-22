@@ -25,7 +25,8 @@ class Lesson extends Model
         return $this->belongsToMany('App\User');
     }
 
-    public function checkUser() {
-        return $this->users->where('id', Auth::user()->id)->first();
+    public function shuffleVars($array) {
+        shuffle($array);
+        return $array;
     }
 }

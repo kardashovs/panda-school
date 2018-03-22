@@ -13,7 +13,9 @@ class DashboardController extends Controller
     public function index()
     {
         $levels = Level::where('language_id', Auth::user()->language->id)
-                        ->with(['sections', 'sections.lessons', 'sections.lessons.users' => function($query) {
+                        ->with(['sections',
+                            'sections.lessons',
+                            'sections.lessons.users' => function($query) {
                             $query->where('user_id', Auth::user()->id)->withPivot('complete');
                         }])
                         ->orderBy('sort', 'asc')

@@ -1,6 +1,6 @@
 function nextLesson(href) {
     event.preventDefault();
-    $('.lesson__content').height(0);
+    $('.lesson__content').removeClass('lesson__content--active');
     setTimeout(function () {
         location.href=href
     }, 700);
@@ -9,10 +9,29 @@ function nextLesson(href) {
 function checkLesson(id) {
     event.preventDefault();
 
-    $('.lesson__content').height(0);
+    $('.lesson__content').removeClass('lesson__content--active');
     setTimeout(function () {
         document.getElementById(id).submit();
     }, 700)
+}
+
+function hidePreviewBlock() {
+    $('.lesson__content').removeClass('lesson__content--active');
+    $('#hidePreview').hide();
+
+
+    $('#check').show();
+
+    setTimeout(function () {
+        $('.lesson__media--slider').hide();
+        $('.swiper-button-prev').hide();
+        $('.swiper-button-next').hide();
+        $('.associal-slider__paginate').hide();
+        $('.lesson__media__block').hide();
+        $('.lesson__media').show();
+
+        $('.lesson__content').addClass('lesson__content--active');
+    }, 1000)
 }
 
 $(document).ready(function(){
@@ -20,19 +39,15 @@ $(document).ready(function(){
 	$(document).on('click', function (e) {
 		if(!$(e.target).hasClass('dropdown'))
             $('.toggle__menu').fadeOut();
+
 	});
 
-	const childrenLessonContent = $('.lesson__content').children();
-	let heightLessonContent = 0;
 
-    $(childrenLessonContent).each(function (index, element) {
-        if($(element).css('display') != 'none')
-		heightLessonContent += $(element).outerHeight(true);
+    setTimeout(() => {$('.lesson__content').addClass('lesson__content--active')}, 500)
+
+	$('.lesson__help__button').on('click', function () {
+		$('.lesson__help__container').fadeToggle()
     });
-
-    $('.lesson__content').height(heightLessonContent);
-
-
 
 	$('.dropdown').on('click', function() {	
 		$('.toggle__menu').fadeOut();
@@ -73,10 +88,8 @@ $(document).ready(function(){
 		let audio = new Audio($(this).attr('data-sound'));
 		audio.play();
         audio.addEventListener('loadedmetadata', function() {
-
-            console.log(audio.duration);
+            // console.log(audio.duration);
         });
-
 	});
 	
 	$('.lesson__media__replay').on('click', function() {

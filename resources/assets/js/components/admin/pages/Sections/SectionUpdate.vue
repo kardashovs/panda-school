@@ -53,17 +53,6 @@
                                 ></v-select>
                             </v-flex>
                             <v-flex xs6  class="pl-4">
-                            <v-text-field
-                                    ref="sort"
-                                    label="Порядок сортировки"
-                                    v-model="section.sort"
-                                    required
-                                    :rules="[rules.required,rules.int]"
-                                    validate-on-blur
-                                    append-icon="sort"
-                            ></v-text-field>
-                        </v-flex>
-                            <v-flex xs6>
                                 <v-select
                                         ref="levels"
                                         :items="filterLevels"
@@ -78,12 +67,31 @@
 
                                 ></v-select>
                             </v-flex>
+                            <v-flex xs6 class="pb-4">
+                                <quill-editor
+                                        ref="myQuillEditor"
+                                        v-model="section.hint"
+                                        :options="defaultOptions"
+                                        @change="onEditorChange($event)">
+                                </quill-editor>
+                            </v-flex>
+                            <v-flex xs6 class="pl-4">
+                                <v-text-field
+                                        ref="sort"
+                                        label="Порядок сортировки"
+                                        v-model="section.sort"
+                                        required
+                                        :rules="[rules.required,rules.int]"
+                                        validate-on-blur
+                                        append-icon="sort"
+                                ></v-text-field>
 
-
+                            </v-flex>
                             <v-flex xs12>
                                 <v-btn color="green" dark depressed @click="submitForm">Сохранить</v-btn>
                                 <v-btn color="error" :to="{name: 'sections'}">Отменить</v-btn>
                             </v-flex>
+
 
                         </v-layout>
                     </v-form>
@@ -100,12 +108,34 @@
     export default {
         data() {
             return {
+                defaultOptions: {
+                    modules: {
+                        toolbar: [
+                            [{ 'header': [5, 6, false] }],
+                            [{ 'color': ['#B2BCC7', '#80BAFF', '#000'] }, { 'background': [] }],
+                            [{ 'size': ['small', false, 'large'] }],
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                            [{ 'align': [] }],
+                            [{ 'indent': '-1' }, { 'indent': '+1' }],
+                            ['clean']
+                        ]
+                    },
+                    history: {
+                        delay: 1000,
+                        maxStack: 50,
+                        userOnly: false
+                    },
+                    readOnly: false,
+                    theme: 'snow'
+                },
                 loadSection: false,
                 section: {
                     name: '',
                     title:'',
                     level_id:'',
-                    language:''
+                    language:'',
+                    hint: ''
                 },
                 levels:[],
                 languages: [],
@@ -119,6 +149,9 @@
             this.getSection(this.$route.params.id);
         },
         computed: {
+            editor() {
+                return this.$refs.myQuillEditor.quill
+            },
             slugReplace () {
                 return this.section.name = slugify(this.section.title).toLowerCase().trim();
             },
@@ -128,6 +161,10 @@
             }
         },
         methods: {
+            onEditorChange({ quill, html, text }) {
+                console.log('editor change!', quill, html, text)
+                this.content = html
+            },
             messageStatus (message, status) { //status true === success
                 this.$emit('messageStatus', message, status)
             },
@@ -166,6 +203,7 @@
                     formData.set('_method', 'put');
                     formData.set('name', this.section.name);
                     formData.set('title', this.section.title);
+                    formData.set('hint', this.section.hint);
                     formData.set('level_id', this.section.level_id);
                     formData.set('sort', this.section.sort);
 
@@ -188,6 +226,19 @@
     }
 </script>
 
-<style scoped>
+<style >
+    .ql-editor > * {
+        font-family: 'ProximaNova-Regular';
+        color: #B2BCC7;
+        font-size: 14px;
+        line-height: 15px;
+    }
+    .ql-editor ol, .ql-editor ul {
+        padding-left: 0px
+    }
 
+    .ql-editor strong {
+        font-family: 'ProximaNova-Bold';
+        font-size: 16px
+    }
 </style>

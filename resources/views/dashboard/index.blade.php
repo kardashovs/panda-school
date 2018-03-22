@@ -13,6 +13,7 @@
         @foreach($levels as $level)
         {{--@if($level->sections->count() > 0)--}}
         @if(true)
+
         <div class="section">
 
             <div class="section__content">
@@ -47,10 +48,10 @@
 								<span class="section__progress--right">
 									<img src="/design/images/progress-circle.png" srcset="/design/images/progress-circle@2x.png 2x" width="17px" height="17px" alt="">
 								</span>
-                            <span class="section__progress--text">10%</span>
+                            <span class="section__progress--text">{{ $level->level_percent }}%</span>
                         </div>
                         <div class="section__progress-bar">
-                            <div class="section__progress-bar__level" style="width:10%"></div>
+                            <div class="section__progress-bar__level" style="width:{{ $level->level_percent }}%"></div>
                         </div>
                     </div>
                 </div>
@@ -64,10 +65,10 @@
                             <div class="section__dropdown__progress">
                                 <div class="section__circle">
                                     <div class="section__circle--small">
-                                        <span>10%</span>
+                                        <span>{{ $section->section_percent }}%</span>
                                     </div>
                                     <div class="section__circle--bg"
-                                         style="background: linear-gradient(270deg, #ADF66B 0%, #00FFC8 50%, #E8EAFF 0%);">
+                                         style="background: linear-gradient(270deg, #ADF66B 0%, #00FFC8 {{ $section->section_percent }}%, #E8EAFF 0%);">
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +90,7 @@
                                          @if($lesson->users->first() && $lesson->users->first()->pivot->complete)
                                             style="background: linear-gradient(270deg, #ADF66B 0%, #00FFC8 100%, #E8EAFF 0%);"
                                          @elseif($lesson->users->first() && !$lesson->users->first()->pivot->complete)
-                                            style="background: linear-gradient(270deg, #ADF66B -30%, #FF3D00 100%, #E8EAFF 0%);"
+                                            style="background: linear-gradient(270deg, #ADF66B -30%, #FF3D00 15%, #E8EAFF 0%);"
                                          @else
 
                                          @endif

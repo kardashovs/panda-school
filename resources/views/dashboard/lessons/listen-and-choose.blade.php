@@ -3,13 +3,18 @@
 @section('lesson')
     <div class="lesson__header">
         <div class="lesson__title">
-            <h2 class="lesson__h2">Прослушайте и выбирите правильный ответ</h2>
+            <h2 class="lesson__h2">{{$lesson->template->title}}</h2>
             <span class="lesson__description">Сhoose the right answer</span>
         </div>
         <div class="lesson__help">
             <button class="lesson__help__button">
                 <img src="/design/images/help-icon.png" srcset="/design/images/help-icon@2x.png 2x" alt="">
             </button>
+            <div class="lesson__help__container">
+                <div class="lesson__help__container--wysiwyg">
+                    {!! $lesson->section->hint !!}
+                </div>
+            </div>
         </div>
     </div>
     <div class="lesson__main lesson__choose">
@@ -52,9 +57,6 @@
 
 @section('button-lesson-check')
     <a href="#check" class="control__next" onclick="event.preventDefault();checkLesson('{{ $lesson->name }}');">{{ __('lesson.check') }}</a>
-    {{--<form id="{{ $lesson->name }}" action="{{ route('dashboard.lesson.check', [$lesson->section->level->name, $lesson->section->name, $lesson->name]) }}" method="POST" style="display: none;">--}}
-    {{--@csrf--}}
-    {{--</form>--}}
 @endsection
 
 @section('scripts')

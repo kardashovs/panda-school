@@ -19,4 +19,20 @@ class Level extends Model
         return $this->belongsTo('App\Models\Language');
     }
 
+    public function getLevelPercentAttribute() {
+        $summ = 0;
+        $count = 0;
+        foreach ($this->sections as $item):
+            if($item->lessons->count()):
+                $count++;
+                $summ += floor($item->section_percent);
+            endif;
+        endforeach;
+
+        if($count != 0)
+            $summ = floor($summ/$count);
+
+        return $summ;
+    }
+
 }

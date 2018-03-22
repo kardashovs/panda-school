@@ -10,6 +10,7 @@
     <title>Panda School – Панель ученика школа</title>
     <!--	<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">
+    @yield('styles')
     <link rel="stylesheet" href="{{ asset('design/css/main.css')  }}">
 </head>
 <body>
@@ -130,7 +131,7 @@
                             <img src="/design/images/level.png" srcset="/design/images/level@2x.png 2x" alt="">
                         </div>
                         <div class="progress__level__text">
-                            Level: 1
+                            Level: {{ $levelCount }}
                         </div>
                     </div>
                     <div class="progress__per">
@@ -138,11 +139,11 @@
                             <img src="/design/images/percent.png" srcset="/design/images/percent@2x.png 2x" alt="">
                         </div>
                         <div class="progress__level__text">
-                            20%
+                            {{ $levelPercent }} %
                         </div>
                     </div>
                     <div class="progress__line">
-                        <div class="progress__line__percent" style="width: 30%">
+                        <div class="progress__line__percent" style="width: {{ $levelPercent }}%">
 
                         </div>
                     </div>
@@ -174,6 +175,8 @@
 <script src="{{ asset('design/js/main.js') }}"></script>
 
 @yield('scripts')
+@yield('scripts-lesson')
+
 
 </body>
 </html>

@@ -7,6 +7,19 @@ import VueAxios from 'vue-axios';
 import Vuetify from 'vuetify';
 import axios from 'axios';
 
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+import VueQuillEditor from 'vue-quill-editor'
+
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+window.Vue.use(VueQuillEditor, /* { default global options } */)
+
 window.Vue.use(Vuetify)
 window.Vue.use(VueAxios, axios);
 window.Vue.use(VueRouter);
@@ -16,10 +29,6 @@ axios.defaults.headers.common = {
     'ContentType':'application/json',
     'X-Requested-With': 'XMLHttpRequest',
 };
-
-// import ModalComponent from './components/admin/components/ModalComponent.vue';
-// import SlugComponent from './components/admin/components/SlugComponent.vue';
-
 
 import App from './components/admin/App.vue'
 import router from './components/admin/routes/index.js'
