@@ -90,7 +90,7 @@
                         <div class="devider form-devider"></div>
 
                         <div class="login__field-block">
-                            <input id="name" type="text" name="email" value="{{ old('name') }}" placeholder="Почта" class="login__field__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus>
+                            <input id="name" type="text" name="email" value="{{ old('name') }}" placeholder="Имя" class="login__field__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus>
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('name') }}</strong>
