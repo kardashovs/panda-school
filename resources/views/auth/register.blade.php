@@ -90,7 +90,7 @@
                         <div class="devider form-devider"></div>
 
                         <div class="login__field-block">
-                            <input id="name" type="text" name="email" value="{{ old('name') }}" placeholder="Имя" class="login__field__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus>
+                            <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="Имя" class="login__field__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus>
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -114,18 +114,19 @@
                             @endif
                         </div>
                         <div class="login__field-block">
-                            <input id="password_confirmation" type="password_confirmation" placeholder="Повторите пароль" class="login__field__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <input id="password_confirmation" type="password" placeholder="Повторите пароль" class="login__field__input form-control" name="password_confirmation" required>
 
                         </div>
 
-                        <div class="login__block-button">
-                            <button class="login__button login__button--signin" onclick="location.href='{{ route('login') }}'">
-                                Войти
-                            </button>
-                        </div>
                         <div class="login__block-button">
                             <button type="submit" class="login__button login__button--signup">
                                 Регистрация
+                            </button>
+                        </div>
+                        <div class="login__block-button">
+
+                            <button class="login__button login__button--signin" onclick="location.href='{{ route('login') }}'">
+                                Войти
                             </button>
                         </div>
 
