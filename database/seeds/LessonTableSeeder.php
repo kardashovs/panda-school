@@ -41,7 +41,7 @@ class LessonTableSeeder extends Seeder
                 'title' => 'Прослушай и заполни',
                 'meta' => '{ "body": { "image": "assets/lessons/table.jpg", "sound": "assets/sounds/table.mp3", "word": "G[i]r[l]", "vars_true": ["i", "l"] } }',
                 'template_id' => '3',
-                'section_id' => '1',
+                'section_id' => '2',
                 'sort' => '4',
             ],
             [
@@ -49,7 +49,7 @@ class LessonTableSeeder extends Seeder
                 'title' => 'Прослушай и заполни',
                 'meta' => '{"body": {"vars": [{"image": "/design/images/moscow.png", "sound": "https://myefe.ru/data/sw/cwords/gb/M/M0625600.mp3", "title": "Moscow"}], "vars_true": ["Moscow"]}}',
                 'template_id' => '6',
-                'section_id' => '1',
+                'section_id' => '2',
                 'sort' => '5',
             ],
             [
@@ -57,7 +57,7 @@ class LessonTableSeeder extends Seeder
                 'title' => 'Собирите слово из букв',
                 'meta' => '{"body": {"image": "/design/images/moscow.png", "sound": "https://myefe.ru/data/sw/cwords/gb/M/M0625600.mp3", "vars_true": ["M", "o", "s", "c", "o", "w"], "text_random": "Moscow"}}',
                 'template_id' => '7',
-                'section_id' => '1',
+                'section_id' => '2',
                 'sort' => '6',
             ],
             [
@@ -65,7 +65,7 @@ class LessonTableSeeder extends Seeder
                 'title' => 'Собирите слово из букв',
                 'meta' => '{"body": {"vars_true": {"image": "/design/images/paris.png", "sound": "https://myefe.ru/data/sw/cwords/gb/M/M0625600.mp3", "value": "Paris"}}}',
                 'template_id' => '8',
-                'section_id' => '1',
+                'section_id' => '2',
                 'sort' => '7',
             ],
         ]);
